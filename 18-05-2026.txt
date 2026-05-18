@@ -1,0 +1,53 @@
+CREATE TABLE emp (
+    id INT
+);
+
+START TRANSACTION;
+
+INSERT INTO emp VALUES (101);
+
+SAVEPOINT a1;
+
+INSERT INTO emp VALUES (102);
+
+SAVEPOINT a2;
+
+SELECT * FROM emp;
+
+INSERT INTO emp VALUES (103);
+
+SAVEPOINT a3;
+
+ROLLBACK TO a1;
+
+INSERT INTO emp VALUES (104);
+
+SELECT * FROM emp;
+
+COMMIT;
+
+show databases;
+
+use vitcampus;
+
+show tables from vitcampus;
+
+select * from cse;
+
+desc cse;
+
+
+ALTER TABLE cse ADD(
+    sphn int8, sphn2 int8
+);
+
+insert into cse values (106,"Semi",95,'CSE','SriLanka');
+
+ALTER TABLE cse DROP COLUMN sphn2;
+
+ALTER TABLE cse ADD(
+    sCountry varchar(30) DEFAULT 'INDIA'
+);
+
+ALTER TABLE cse RENAME column 
+    Scountry TO SLocation;
