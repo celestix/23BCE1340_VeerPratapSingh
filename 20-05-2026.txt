@@ -1,0 +1,88 @@
+USE vitcampus;
+
+CREATE TABLE Students (
+    StudentID INT NOT NULL,
+    StudentLastName VARCHAR(255) UNIQUE NOT NULL,
+    StudentFirstName VARCHAR(255) NOT NULL,
+    StudentAge INT
+);
+
+DESC Students;
+
+INSERT INTO Students VALUES (201,'Kumar','Arjun',NULL);
+
+SELECT * FROM Students;
+
+ALTER TABLE Students
+ADD UNIQUE (StudentAge);
+
+ALTER TABLE Students
+DROP CONSTRAINT StudentAge;
+
+DROP TABLE Students;
+
+CREATE TABLE Learners (
+    Age INT NOT NULL,
+    CHECK (Age >= 18 AND Age <= 25)
+);
+
+INSERT INTO Learners VALUES (22);
+
+CREATE TABLE StudentInfo (
+    StudentID INT NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    FirstName VARCHAR(255),
+    Age INT,
+    City VARCHAR(255) DEFAULT 'Chennai'
+);
+
+DESC StudentInfo;
+
+CREATE TABLE Inventory (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100) NOT NULL,
+    ReferenceNo INT NOT NULL UNIQUE
+);
+
+DESC Inventory;
+
+INSERT INTO Inventory VALUES (301,'Laptop',45872);
+
+SELECT * FROM Inventory;
+
+ALTER TABLE Students
+ADD PRIMARY KEY (StudentID);
+
+ALTER TABLE Students
+DROP PRIMARY KEY;
+
+DROP TABLE Inventory;
+
+CREATE TABLE Department (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Department VALUES
+(201,'Computers'),
+(202,'Mechanical');
+
+SELECT * FROM Department;
+
+DROP TABLE Inventory;
+
+CREATE TABLE Inventory (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100) NOT NULL,
+    DeptID INT,
+    FOREIGN KEY (DeptID) REFERENCES Department(DeptID)
+);
+
+DESC Inventory;
+
+DELETE FROM Department WHERE DeptID=201;
+
+INSERT INTO Inventory VALUES
+(601,'Wireless Mouse',202);
+
+SELECT * FROM Inventory;
